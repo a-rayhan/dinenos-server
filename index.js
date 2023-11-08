@@ -63,6 +63,12 @@ async function run() {
             res.send(result)
         })
 
+        app.post('/allFoodItems', async (req, res) => {
+            const foodItem = req.body;
+            const result = await dinenosCollection.insertOne(foodItem);
+            res.send(result)
+        })
+
         
 
 
