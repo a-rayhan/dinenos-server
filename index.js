@@ -57,6 +57,12 @@ async function run() {
         const purchaseCollection = client.db("dinenosDb").collection("purchaseItems");
         const blogCollection = client.db("dinenosDb").collection("blog");
 
+        app.get('/allFoodItems', async (req, res) => {
+            const cursor = dinenosCollection.find();
+            const result = await cursor.toArray();
+            res.send(result)
+        })
+
         
 
 
