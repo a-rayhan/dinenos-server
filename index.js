@@ -91,7 +91,28 @@ async function run() {
             res.send(result);
         })
 
-      
+        // Purchase
+        app.get('/purchasedata', async (req, res) => {
+            const cursor = purchaseCollection.find();
+            const result = await cursor.toArray();
+            res.send(result)
+        })
+
+        app.post('/purchasedata', async (req, res) => {
+            const purchaseItem = req.body;
+            const result = await purchaseCollection.insertOne(purchaseItem);
+            res.send(result)
+        })
+
+        app.delete('/purchasedata/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await purchaseCollection.deleteOne(query);
+            res.send(result);
+        })
+        
+
+        
 
 
         // Send a ping to confirm a successful connection
