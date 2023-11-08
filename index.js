@@ -133,7 +133,11 @@ async function run() {
                 .send({ success: true })
         })
 
-        
+        app.post('/logout', async (req, res) => {
+            const user = req.body;
+            console.log('Logging out', user);
+            res.clearCookie('Token', { maxAge: 0 }).send({ success: true })
+        })
 
 
         // Send a ping to confirm a successful connection
