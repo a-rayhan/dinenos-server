@@ -69,7 +69,29 @@ async function run() {
             res.send(result)
         })
 
-        
+        app.put('/allFoodItems/:id', async (req, res) => {
+            const id = req.params.id;
+            const foodData = req.body;
+            const filter = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updateData = {
+                $set: {
+                    foodname: foodData.foodname,
+                    categories: foodData.categories,
+                    madeby: foodData.madeby,
+                    origin: foodData.origin,
+                    quantity: foodData.quantity,
+                    price: foodData.price,
+                    image: foodData.image,
+                    description: foodData.description,
+                    email: foodData.email
+                }
+            }
+            const result = await dinenosCollection.updateOne(filter, updateData, options);
+            res.send(result);
+        })
+
+      
 
 
         // Send a ping to confirm a successful connection
