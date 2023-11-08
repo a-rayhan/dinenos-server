@@ -112,6 +112,13 @@ async function run() {
         })
         
 
+        // Blog
+        app.get('/blog', async (req, res) => {
+            const cursor = blogCollection.find();
+            const result = await cursor.toArray();
+            res.send(result)
+        })
+
         
 
 
